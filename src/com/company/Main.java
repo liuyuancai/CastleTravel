@@ -25,6 +25,7 @@ public class Main {
     public void init(){
         JFrame jFrame = new JFrame("CastleTravel");
         jFrame.setBounds(700,110,350,87);
+        jFrame.setResizable(false);
 
         JPanel selectPanel = new JPanel();
         selectPanel.setBackground(new Color(173,201,241));

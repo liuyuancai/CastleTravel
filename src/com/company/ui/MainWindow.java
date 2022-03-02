@@ -23,6 +23,7 @@ public class MainWindow extends JFrame {
         else length = 40;
         getPathXY();//计算路线,并且获取每条路线的XY值
         this.setSize(Col*length+20,Row*length+87);
+        this.setResizable(false);
         setLayout(new BorderLayout());
 
         PaintPad pad = new PaintPad(Row,Col,PathX,PathY,length);

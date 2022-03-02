@@ -3,16 +3,21 @@ package com.company.algorithm;
 
 public class Calculate {
     int n,m;//n:行数 m:列数
-
-    int[][] map = new int[50][50];//地图大小
-    int[][] pathX = new int[100][400];//x坐标组
-    int[][] pathY = new int[100][400];//y坐标组
-    int[] path1 = new int[400];//x坐标暂存区
-    int[] path2 = new int[400];//y坐标暂存区
-    int num = 0;//记录第几组坐标
+    int[][] map ;//地图
+    int[][] pathX ;//x坐标组
+    int[][] pathY ;//y坐标组
+    int[] path1 ;//x坐标暂存区
+    int[] path2 ;//y坐标暂存区
+    int num ;//记录第几组坐标
     public Calculate(int n, int m){
         this.n = n;
         this.m = m;
+        map = new int[n+1][m+1];
+        pathX = new int[100][n*m];
+        pathY = new int[100][n*m];
+        path1 = new int[n*m];
+        path2 = new int[n*m];
+        num = 0;
         initX();
     }
     void initX(){//初始化值
@@ -51,7 +56,7 @@ public class Calculate {
             return;
         }
         //向右试探
-        if(map[x][y+1] == 0 && y + 1 < m){
+        if(y != m)if(map[x][y+1] == 0 && y + 1 < m){
             map[x][y+1] = 1;
             path1[step] = x;
             path2[step] = y+1;
@@ -67,7 +72,7 @@ public class Calculate {
             map[x][y-1] = 0;
         }
         //向下试探
-        if(map[x + 1][y] == 0 && x + 1 < n){
+        if(x != n)if(map[x + 1][y] == 0 && x + 1 < n){
             map[x+1][y] = 1;
             path1[step] = x+1;
             path2[step] = y;
