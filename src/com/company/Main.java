@@ -45,7 +45,7 @@ public class Main {
                     RoundDialog roundDialog = new RoundDialog("没有找到路径!");
                 }
                 else {
-                    MainWindow mainWindow = new MainWindow(rowSelect.getSelectedIndex()+3,colSelect.getSelectedIndex()+6);
+                    MainWindow mainWindow = new MainWindow(rowSelect.getSelectedIndex()+3,colSelect.getSelectedIndex()+8);
                     mainWindow.setLocation(recOfSelectPanel.x,recOfSelectPanel.y+jFrame.getHeight());
                     mainWindow.setResizable(false);
                     mainWindow.setVisible(true);

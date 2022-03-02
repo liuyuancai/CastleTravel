@@ -33,7 +33,7 @@ public class PaintPad extends JPanel {//画板
         this.setSize(col*blockWidth,row*blockHeight);
         this.setLayout(new GridLayout(row,col,0,0));
         textArea = new JTextArea[row][col];
-        for (int i = 0; i < row; i++) {//创建背景
+        for (int i = 0; i < row; i++) {//创建背景32
             for (int j = 0; j < col; j++) {
                 textArea[i][j] = new JTextArea(20,20);
 //                textArea[i][j].setSize(40,40);

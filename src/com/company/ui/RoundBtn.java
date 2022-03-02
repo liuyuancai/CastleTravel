@@ -21,10 +21,6 @@ public class RoundBtn extends JButton {
     }
 
     protected void paintComponent(Graphics g) {
-//        int fieldX = 0;
-//        int fieldY = 0;
-//        int fieldWeight = getSize().width;
-//        int fieldHeight = getSize().height;
 
         //设置抗锯齿
         Graphics2D g2d = (Graphics2D) g;
