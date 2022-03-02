@@ -33,19 +33,18 @@ public class Calculate {
     }
     //利用dfs计算路线
     public void calculates(int x,int y,int step){//计算路线
-        if(step>n + m)for(int i = 0; i < n-2;i++){
-            int isClose = 0;
-            if(i > 5)break;
-            for(int j = n - 2 - i,t = 0;t < i + 2;j++,t++){
-                if(map[j][t] == 1)isClose++;
-            }
-            if(isClose == 2 + i && y > (x + n - i - 1)){
-                return;
-            }
-        }
+//        if(step>n + m)for(int i = 0; i < n-2;i++){
+//            int isClose = 0;
+//            if(i > 5)break;
+//            for(int j = n - 2 - i,t = 0;t < i + 2;j++,t++){
+//                if(map[j][t] == 1)isClose++;
+//            }
+//            if(isClose == 2 + i && y > (x + n - i - 1)){
+//                return;
+//            }
+//        }
         if(num == 100)return;
         if(x == n - 1 && y == 0){
-
             if(step == n * m){
                 for(int i = 0;i < step; i++){
                     pathX[num][i] = path1[i];

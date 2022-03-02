@@ -1,5 +1,4 @@
 package com.company.ui;
-
 import com.company.algorithm.Calculate;
 import javax.swing.*;
 import java.awt.*;
@@ -121,7 +120,7 @@ public class MainWindow extends JFrame {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
-                pad.remove(pad.pathMask);
+                pad.remove(pad.pathPad);
             }
         });
         thread.start();

@@ -2,7 +2,6 @@ package com.company;
 import com.company.ui.MainWindow;
 import com.company.ui.RoundBtn;
 import com.company.ui.RoundDialog;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,7 +30,7 @@ public class Main {
         selectPanel.setBackground(new Color(173,201,241));
 
         for(int i = 3; i <= 20; i++) rowSelect.addItem(""+i);
-        for(int i = 8; i <= 20; i++) colSelect.addItem(""+i);
+        for(int i = 6; i <= 20; i++) colSelect.addItem(""+i);
 
         jLabel1.setFont(new Font("微软雅黑",Font.PLAIN,15));
         jLabel2.setFont(new Font("微软雅黑",Font.PLAIN,15));
@@ -45,7 +44,7 @@ public class Main {
                     RoundDialog roundDialog = new RoundDialog("没有找到路径!");
                 }
                 else {
-                    MainWindow mainWindow = new MainWindow(rowSelect.getSelectedIndex()+3,colSelect.getSelectedIndex()+8);
+                    MainWindow mainWindow = new MainWindow(rowSelect.getSelectedIndex()+3,colSelect.getSelectedIndex()+6);
                     mainWindow.setLocation(recOfSelectPanel.x,recOfSelectPanel.y+jFrame.getHeight());
                     mainWindow.setResizable(false);
                     mainWindow.setVisible(true);

@@ -50,10 +50,6 @@ public class RoundDialog extends JFrame {
         JLabel jLabel = new JLabel("    ");
         topJPanel.add(jLabel);
         topJPanel.setBackground(new Color(220,176,249));
-//        JButton jButton = new JButton();
-//        jButton.setBackground(new Color(220,176,249));
-//        jButton.setBorderPainted(false);
-//        jButton.setFocusPainted(false);
 
         //为窗口添加各个组件
         this.add(topJPanel,BorderLayout.NORTH);
