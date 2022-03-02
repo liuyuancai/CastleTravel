@@ -15,7 +15,7 @@ public class RoundDialog extends JFrame {
 
     public RoundDialog(String text){
         this.setUndecorated(true);//把边框都去掉
-        this.setLayout(new BorderLayout(15,15));
+        this.setLayout(new BorderLayout(15,5));
         this.getContentPane().setBackground(new Color(220,176,249));
 
         //初始化中心和底部的JPanel
@@ -46,13 +46,17 @@ public class RoundDialog extends JFrame {
         bottomJPanel.add(confirmJBt);
 
         //为顶部设置按钮,使文本可以居中
-        JButton jButton = new JButton();
-        jButton.setBackground(new Color(220,176,249));
-        jButton.setBorderPainted(false);
-        jButton.setFocusPainted(false);
+        JPanel topJPanel = new JPanel();
+        JLabel jLabel = new JLabel("    ");
+        topJPanel.add(jLabel);
+        topJPanel.setBackground(new Color(220,176,249));
+//        JButton jButton = new JButton();
+//        jButton.setBackground(new Color(220,176,249));
+//        jButton.setBorderPainted(false);
+//        jButton.setFocusPainted(false);
 
         //为窗口添加各个组件
-        this.add(jButton,BorderLayout.NORTH);
+        this.add(topJPanel,BorderLayout.NORTH);
         this.add(centerJPanel,BorderLayout.CENTER);
         this.add(bottomJPanel,BorderLayout.SOUTH);
 
