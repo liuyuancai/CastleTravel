@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
     public MainWindow(int Row,int Col){//画路线的窗口
         this.Row = Row;
         this.Col = Col;
-        if(Row * Col < 100)length = 70;
+        if(Row * Col < 100)length = 80;
         else if(Row * Col < 280 && Row < 16)length = 50;
         else length = 40;
         getPathXY();//计算路线,并且获取每条路线的XY值
@@ -35,7 +35,7 @@ public class MainWindow extends JFrame {
         RoundBtn jumpBtn = new RoundBtn(15,15,70,30,new JLabel("跳转"));
 
         //创建一个下拉条
-        JComboBox<String > pagesSelect = new JComboBox<String>();
+        RoundComboBox pagesSelect = new RoundComboBox();
         for (int i = 1;i < pathNum; i++)pagesSelect.addItem(""+i);
 
         //给底部添加一个JPanel

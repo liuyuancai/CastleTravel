@@ -46,6 +46,7 @@ public class PaintPad extends JPanel {//画板
             }
         }
     }
+
     public void stopPaint(){
         pathPad.b = false;
     }//停止绘画的函数

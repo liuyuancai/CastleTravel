@@ -1,6 +1,7 @@
 package com.company;
 import com.company.ui.MainWindow;
 import com.company.ui.RoundBtn;
+import com.company.ui.RoundComboBox;
 import com.company.ui.RoundDialog;
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +13,8 @@ import java.awt.event.WindowEvent;
 
 public class Main {
 
-    JComboBox<String> rowSelect = new JComboBox<String>();
-    JComboBox<String> colSelect = new JComboBox<String>();
+    RoundComboBox rowSelect = new RoundComboBox();
+    RoundComboBox colSelect = new RoundComboBox();
 
     JLabel jLabel1 = new JLabel("行");
     JLabel jLabel2 = new JLabel("列");
@@ -69,7 +70,8 @@ public class Main {
         jFrame.add(selectPanel);
         jFrame.setVisible(true);
     }
-    public static void main(String[] args){
+    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());//更改默认组件样式
         new Main().init();
     }
 }
