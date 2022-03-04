@@ -18,24 +18,28 @@ public class PathPad extends JPanel {
     }
 
     public void paintPath(int x){
+        int[] time = {50};
         t = new Thread(new Runnable() {
             @Override
             public void run() {
-                for(int j = 0; j < n * m - 1 && b; j++){
-                    try {
-                        t.sleep(75);
-                    }catch (InterruptedException e){
-                        e.printStackTrace();
+                while (b) {
+                    for (int j = 0; j < n * m - 1 && b; j++) {
+                        try {
+                            t.sleep(time[0]);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Graphics2D graphics = (Graphics2D) getGraphics();//获取画笔
+                        BasicStroke stroke = new BasicStroke(4.0f);//调整线条的粗细
+                        graphics.setStroke(stroke);
+                        graphics.setColor(new Color(252, 194, 219));
+                        graphics.drawLine(
+                                PathY[x][j] * lineLength + lineLength / 2,
+                                PathX[x][j] * lineLength + lineLength / 2,
+                                PathY[x][j + 1] * lineLength + lineLength / 2,
+                                PathX[x][j + 1] * lineLength + lineLength / 2);//画路线
                     }
-                    Graphics2D graphics = (Graphics2D)getGraphics();//获取画笔
-                    BasicStroke stroke = new BasicStroke(4.0f);//调整线条的粗细
-                    graphics.setStroke(stroke);
-                    graphics.setColor(new Color(252,194,219));
-                    graphics.drawLine(
-                            PathY[x][j]*lineLength+lineLength/2,
-                            PathX[x][j]*lineLength+lineLength/2,
-                            PathY[x][j+1]*lineLength+lineLength/2,
-                            PathX[x][j+1]*lineLength+lineLength/2);//画路线
+                    time[0] = 1;
                 }
             }
         });
