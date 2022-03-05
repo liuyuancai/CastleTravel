@@ -35,7 +35,7 @@ public class JFrameWindow extends JFrame {
         this.setUndecorated(true);//把边框都去掉
         this.setBounds(700,200,width,height);
         this.setVisible(true);
-        this.getContentPane().setBackground(new Color(254, 220, 247));
+        this.getContentPane().setBackground(new Color(234, 196, 251));
         this.setShape(new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(), 38, 38));
 
         //顶部的JPanel（标题栏）

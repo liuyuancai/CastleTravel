@@ -30,8 +30,8 @@ public class MainWindow extends JFrameWindow {
 
         //创建一个JPanel来设置背景
         PaintPad pad = new PaintPad(Row,Col,PathX,PathY,length);
-        pad.setLocation(0,40);
-        this.setWindowSize(pad.getWidth(),pad.getHeight()+80);
+        pad.setLocation(40,70);
+        this.setWindowSize(pad.getWidth()+80,pad.getHeight()+140);
         add(pad);
 
         //创建一个按钮
@@ -54,7 +54,7 @@ public class MainWindow extends JFrameWindow {
         bottomJPanel.add(nextBtn);
         bottomJPanel.add(pagesSelect);
         bottomJPanel.add(jumpBtn);
-        bottomJPanel.setBackground(new Color(198,251,208));
+        bottomJPanel.setBackground(new Color(234, 196, 251));
 
         //将按钮添加到主窗口
         add(bottomJPanel);
