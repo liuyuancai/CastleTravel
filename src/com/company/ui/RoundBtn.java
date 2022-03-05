@@ -5,9 +5,11 @@ import java.awt.*;
 public class RoundBtn extends JButton {
     private int arcw;
     private int arch;
+    public Color color;
 
     public RoundBtn(int arcw, int arch, int width, int height,JLabel jLabel) {
         super();
+        color = new Color(149, 145, 238);
         this.arch = arch;
         this.arcw = arcw;
         this.setPreferredSize(new Dimension(width, height));
@@ -28,7 +30,7 @@ public class RoundBtn extends JButton {
         if (getModel().isArmed()) {
             g2d.setColor(Color.LIGHT_GRAY); // 点击时高亮
         }else {
-            g2d.setColor(new Color(149, 145, 238));
+            g2d.setColor(color);
         }
         //fillRoundRect方法绘制一个圆角矩形
         g.fillRoundRect(0, 0, getSize().width - 1, getSize().height - 1, arcw, arch);//填充圆角矩形边界

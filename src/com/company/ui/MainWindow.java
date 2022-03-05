@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrameWindow {
     int [][] PathX;
     int [][] PathY;
     int pathNum = 0;//代表第几条路径
@@ -17,16 +17,22 @@ public class MainWindow extends JFrame {
     public MainWindow(int Row,int Col){//画路线的窗口
         this.Row = Row;
         this.Col = Col;
-        if(Row * Col < 100)length = 80;
+
+        setWindowTitle("title");
+
+        //根据格子数量选择格子的大小
+        if(Row * Col < 100)length = 70;
         else if(Row * Col < 280 && Row < 16)length = 50;
         else length = 40;
-        getPathXY();//计算路线,并且获取每条路线的XY值
-        this.setSize(Col*length+20,Row*length+87);
-        this.setResizable(false);
-        setLayout(new BorderLayout());
 
+        getPathXY();//计算路线,并且获取每条路线的XY值
+
+
+        //创建一个JPanel来设置背景
         PaintPad pad = new PaintPad(Row,Col,PathX,PathY,length);
-        add(pad,BorderLayout.CENTER);
+        pad.setLocation(0,40);
+        this.setWindowSize(pad.getWidth(),pad.getHeight()+80);
+        add(pad);
 
         //创建一个按钮
         RoundBtn startBtn = new RoundBtn(15,15,95,30,new JLabel("开始绘制"));
@@ -40,6 +46,7 @@ public class MainWindow extends JFrame {
 
         //给底部添加一个JPanel
         JPanel bottomJPanel = new JPanel();
+        bottomJPanel.setBounds(0,getHeight()-40,getWidth(),40);
 
         //组装底部按钮
         bottomJPanel.add(startBtn);
@@ -50,8 +57,15 @@ public class MainWindow extends JFrame {
         bottomJPanel.setBackground(new Color(198,251,208));
 
         //将按钮添加到主窗口
-        add(bottomJPanel,BorderLayout.SOUTH);
+        add(bottomJPanel);
 
+        //当点击退出时停止画线
+        this.exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pad.stopPaint();
+            }
+        });
 
         //开始绘制的点击事件
         startBtn.addActionListener(new ActionListener() {
@@ -60,12 +74,13 @@ public class MainWindow extends JFrame {
                 if(b){
                     pad.stopPaint();
                     removeItem(pad);
-                }
-                else b = true;
+                } else b = true;
                 pad.drawPath(pad.getCurrentPathId());
-                setTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
+                setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
+
             }
         });
+
 
         //下一张的点击事件
         nextBtn.addActionListener(new ActionListener() {
@@ -74,11 +89,11 @@ public class MainWindow extends JFrame {
                 if(b){
                     pad.stopPaint();
                     removeItem(pad);
-                }
-                else b = true;
+                } else b = true;
                 if (pad.getCurrentPathId()+3>pathNum)pad.drawPath(0);
                 else pad.drawPath(pad.getCurrentPathId()+1);
-                setTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
+                setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
+
             }
         });
 
@@ -89,13 +104,14 @@ public class MainWindow extends JFrame {
                 if(b){
                     pad.stopPaint();
                     removeItem(pad);
-                }
-                else b = true;
+                } else b = true;
                 if(pad.getCurrentPathId()-1<0)pad.drawPath(pathNum-2);
                 else pad.drawPath(pad.getCurrentPathId()-1);
-                setTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
+                setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
             }
         });
+
+
 
         //跳转的点击事件
         jumpBtn.addActionListener(new ActionListener() {
@@ -104,10 +120,10 @@ public class MainWindow extends JFrame {
                 if(b){
                     pad.stopPaint();
                     removeItem(pad);
-                }
-                else b = true;
+                } else b = true;
                 pad.drawPath(pagesSelect.getSelectedIndex());
-                setTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
+                setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
+
             }
         });
     }
@@ -120,7 +136,7 @@ public class MainWindow extends JFrame {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
-                pad.remove(pad.pathPad);
+                pad.remove(pad);
             }
         });
         thread.start();
@@ -142,6 +158,15 @@ public class MainWindow extends JFrame {
         this.pathNum = calculate.getNumPath()+1;
         PathX = calculate.getPathX();
         PathY = calculate.getPathY();
+    }
+//    private void changeTitle(String title){
+//        this.title = title;
+//    }
+
+    private void drawPath(){
+        PaintPad pad = new PaintPad(Row,Col,PathX,PathY,length);
+        pad.setLocation(20,60);
+        add(pad);
     }
 
 }

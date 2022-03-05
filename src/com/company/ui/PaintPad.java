@@ -4,6 +4,10 @@ import java.awt.*;
 
 
 public class PaintPad extends JPanel {//画板
+    private Thread t;
+
+    private int lineLength;
+    boolean b = true;
     private JTextArea[][] textArea;
     private int blockWidth ;
     private int blockHeight ;
@@ -11,7 +15,7 @@ public class PaintPad extends JPanel {//画板
     int mCol ;//列
     int [][] PathX;//X的坐标组
     int [][] PathY;//Y的坐标组
-    public PathPad pathPad;//画板上的遮罩
+//    public PathPad pathPad;//画板上的遮罩
 
 
     public int getCurrentPathId() {//获得第几页id
@@ -30,6 +34,7 @@ public class PaintPad extends JPanel {//画板
         this.PathY = PathY;
         this.blockHeight = length;
         this.blockWidth = length;
+        this.lineLength = length;
         this.setSize(col*blockWidth,row*blockHeight);
         this.setLayout(new GridLayout(row,col,0,0));
         textArea = new JTextArea[row][col];
@@ -48,15 +53,45 @@ public class PaintPad extends JPanel {//画板
     }
 
     public void stopPaint(){
-        pathPad.b = false;
+        this.b = false;
     }//停止绘画的函数
+    public void startPaint(){
+        this.b = true;
+    }
     public void drawPath(int x){//画路线的函数
         this.currentPathId = x;
-        pathPad = new PathPad(mRow,mCol,PathX,PathY,blockWidth);
-        pathPad.setBounds(0,0,getWidth(),getHeight());
-        pathPad.paintPath(x);
-        this.add(pathPad);
         repaint();
+        paintPath(currentPathId);
+    }
+
+    public void paintPath(int x){
+        b = true;
+        int[] time = {50};
+        t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (b) {
+                    for (int j = 0; j < mRow * mCol - 1 && b; j++) {
+                        try {
+                            t.sleep(time[0]);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Graphics2D graphics = (Graphics2D) getGraphics();//获取画笔
+                        BasicStroke stroke = new BasicStroke(4.0f);//调整线条的粗细
+                        graphics.setStroke(stroke);
+                        graphics.setColor(new Color(252, 194, 219));
+                        graphics.drawLine(
+                                PathY[x][j] * lineLength + lineLength / 2,
+                                PathX[x][j] * lineLength + lineLength / 2,
+                                PathY[x][j + 1] * lineLength + lineLength / 2,
+                                PathX[x][j + 1] * lineLength + lineLength / 2);//画路线
+                    }
+                    time[0] = 1;
+                }
+            }
+        });
+        t.start();
     }
 
 }
