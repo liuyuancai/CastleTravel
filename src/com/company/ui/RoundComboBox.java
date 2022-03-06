@@ -123,7 +123,7 @@ class MyListCellRenderer implements ListCellRenderer {
         renderer.setHorizontalAlignment(JLabel.LEFT);
         // 每一行的jlabel的颜色
         if (isSelected) {
-            renderer.setBackground(new Color(103, 223, 136));
+            renderer.setBackground(new Color(214, 150, 254));
             renderer.setForeground(Color.WHITE);
         } else {
             renderer.setBackground(null);

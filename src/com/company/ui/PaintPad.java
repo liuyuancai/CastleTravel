@@ -7,7 +7,7 @@ public class PaintPad extends JPanel {//画板
     private Thread t;
 
     private int lineLength;
-    boolean b = true;
+    boolean isDrawLine ;
     private JTextArea[][] textArea;
     private int blockWidth ;
     private int blockHeight ;
@@ -53,11 +53,10 @@ public class PaintPad extends JPanel {//画板
     }
 
     public void stopPaint(){
-        this.b = false;
+        this.isDrawLine = false;
     }//停止绘画的函数
-    public void startPaint(){
-        this.b = true;
-    }
+
+
     public void drawPath(int x){//画路线的函数
         this.currentPathId = x;
         repaint();
@@ -65,13 +64,13 @@ public class PaintPad extends JPanel {//画板
     }
 
     public void paintPath(int x){
-        b = true;
+        isDrawLine = true;
         int[] time = {50};
         t = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (b) {
-                    for (int j = 0; j < mRow * mCol - 1 && b; j++) {
+                while (isDrawLine) {
+                    for (int j = 0; j < mRow * mCol - 1 && isDrawLine; j++) {
                         try {
                             t.sleep(time[0]);
                         } catch (InterruptedException e) {

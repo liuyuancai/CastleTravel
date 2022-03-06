@@ -19,7 +19,7 @@ public class JFrameWindow extends JFrame {
     RoundBtn hideWindow;
 
     //标题
-    public String text;
+    private String text;
     public JLabel title ;
 
     //
@@ -121,16 +121,16 @@ public class JFrameWindow extends JFrame {
 
     }
 
-    //
+    //设置标题的函数
     public void setWindowTitle(String text){
         this.text = text;
         this.title.setText(text);
     }
 
+    //设置窗口大小的函数
     public void setWindowSize(int width,int height){
         this.width = width;
         this.height = height;
-//        this.getLocation()
         this.setSize(width,height);
         exit.setBounds(this.getWidth()-40,8,25,25);
         hideWindow.setBounds(this.getWidth()-80,8,25,25);

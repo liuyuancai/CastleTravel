@@ -11,7 +11,7 @@ public class MainWindow extends JFrameWindow {
     int pathNum = 0;//代表第几条路径
     int Row,Col;
     int length;
-    boolean b = false;
+    boolean isFirst = true;
     Thread thread;
 
     public MainWindow(int Row,int Col){//画路线的窗口
@@ -64,6 +64,7 @@ public class MainWindow extends JFrameWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pad.stopPaint();
+                removeItem(pad);
             }
         });
 
@@ -71,10 +72,11 @@ public class MainWindow extends JFrameWindow {
         startBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(b){
+                if (isFirst) isFirst = false;
+                else {
                     pad.stopPaint();
                     removeItem(pad);
-                } else b = true;
+                }
                 pad.drawPath(pad.getCurrentPathId());
                 setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
 
@@ -86,10 +88,11 @@ public class MainWindow extends JFrameWindow {
         nextBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(b){
+                if (isFirst) isFirst = false;
+                else {
                     pad.stopPaint();
                     removeItem(pad);
-                } else b = true;
+                }
                 if (pad.getCurrentPathId()+3>pathNum)pad.drawPath(0);
                 else pad.drawPath(pad.getCurrentPathId()+1);
                 setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
@@ -101,10 +104,11 @@ public class MainWindow extends JFrameWindow {
         preBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(b){
+                if (isFirst) isFirst = false;
+                else {
                     pad.stopPaint();
                     removeItem(pad);
-                } else b = true;
+                }
                 if(pad.getCurrentPathId()-1<0)pad.drawPath(pathNum-2);
                 else pad.drawPath(pad.getCurrentPathId()-1);
                 setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
@@ -117,10 +121,11 @@ public class MainWindow extends JFrameWindow {
         jumpBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(b){
+                if (isFirst) isFirst = false;
+                else {
                     pad.stopPaint();
                     removeItem(pad);
-                } else b = true;
+                }
                 pad.drawPath(pagesSelect.getSelectedIndex());
                 setWindowTitle("第"+(pad.getCurrentPathId()+1)+"种方法");
 
