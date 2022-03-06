@@ -46,7 +46,7 @@ public class MainWindow extends JFrameWindow {
 
         //给底部添加一个JPanel
         JPanel bottomJPanel = new JPanel();
-        bottomJPanel.setBounds(0,getHeight()-40,getWidth(),40);
+        bottomJPanel.setBounds(0,getHeight()-50,getWidth(),40);
 
         //组装底部按钮
         bottomJPanel.add(startBtn);
